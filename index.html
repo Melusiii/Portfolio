@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Melusi Shanzi - Full Stack Engineer & Cybersecurity Specialist. Computer Science student building practical apps and secure digital solutions.">
+    <meta name="theme-color" content="#030303">
+    <meta property="og:title" content="Melusi Shanzi | Full Stack Engineer & Cybersecurity Specialist">
+    <meta property="og:description" content="Building secure, practical applications with a security-first foundation.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Melusi Shanzi | Full Stack Engineer">
+    <meta name="twitter:description" content="Full Stack Engineer & Cybersecurity Specialist">
+
+    <title>Melusi Shanzi | Full Stack Engineer & Cybersecurity Specialist</title>
+
+    <!-- Fonts with display=swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Outfit:wght@700;800&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Skip to Content - Accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <div class="mesh-container">
+        <div class="glow-blob blob-1"></div>
+        <div class="glow-blob blob-2"></div>
+        <div class="glow-blob blob-3"></div>
+    </div>
+    <div class="dot-grid"></div>
+
+    <header>
+        <div class="logo">
+            Melusi
+        </div>
+        <div class="nav-actions">
+            <a href="src/Melusi_Shanzi_CV.pdf" download class="btn-cyber btn-outline btn-small hide-mobile">
+                <i class="fa-solid fa-download"></i> <span>CV</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu" aria-expanded="false">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </header>
+
+    <nav class="nav-dock" role="navigation" aria-label="Main navigation">
+        <a href="#home" class="active" aria-current="page">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="home" aria-label="Home">
+            <div class="container">
+                <div class="hero-split">
+                    <!-- Identity Side -->
+                    <div class="hero-identity">
+                        <div class="profile-avatar-large mb-6">
+                            <img src="Images/pic2.jpg" alt="Melusi Shanzi profile photo" fetchpriority="high">
+                        </div>
+                        <h1 class="hero-title large no-margin">Melusi <span class="text-emerald">Shanzi</span></h1>
+                        <p class="hero-subtitle mt-4">Computer Science student building practical apps and digital
+                            solutions.</p>
+
+                        <div class="hero-actions mt-8">
+                            <a href="#projects" class="btn-cyber btn-large">
+                                <span>View Projects</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <a href="#about" class="btn-cyber btn-outline btn-large">
+                                <span>About Me</span>
+                            </a>
+                        </div>
+
+                        <div class="hero-socials">
+                            <a href="https://github.com/Melusiii" class="hero-social-link" target="_blank"
+                                rel="noopener noreferrer" aria-label="GitHub">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/melusi-shanzi-1875b3350/" class="hero-social-link"
+                                target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a href="mailto:melushanzi32@gmail.com" class="hero-social-link" aria-label="Email">
+                                <i class="fa-solid fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Impact Side (Bento Grid) -->
+                    <div class="hero-impact-grid">
+                        <div class="impact-card wide">
+                            <div class="card-glow"></div>
+                            <div class="card-content">
+                                <h3 class="impact-title">Engineering digital experiences with a security-first
+                                    foundation.</h3>
+                                <p class="text-sm text-muted mt-2">Merging clean software design with enterprise-grade
+                                    protection.</p>
+                            </div>
+                        </div>
+
+                        <div class="impact-card">
+                            <div class="card-content">
+                                <i class="fa-solid fa-shield-check text-emerald mb-2"></i>
+                                <h4 class="text-xs uppercase letter-spacing-wide">Certified</h4>
+                                <p class="text-sm font-bold mt-1">Cisco Cyber Specialist</p>
+                            </div>
+                        </div>
+
+                        <div class="impact-card">
+                            <div class="card-content">
+                                <i class="fa-solid fa-code-branch text-emerald mb-2"></i>
+                                <h4 class="text-xs uppercase letter-spacing-wide">Core Stack</h4>
+                                <div class="stack-tags tiny mt-2">
+                                    <span class="tag">Next.js</span>
+                                    <span class="tag">Python</span>
+                                    <span class="tag">C#</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scroll Hint -->
+                <a href="#about" class="scroll-hint" aria-label="Scroll to About section">
+                    <span class="text-xs uppercase letter-spacing-wide text-muted">Scroll to Explore</span>
+                    <div class="scroll-arrow mt-2">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about" aria-label="About Me">
+            <div class="container">
+                <h2 class="section-label">About <span class="text-emerald">Me</span></h2>
+
+                <div class="about-bento">
+
+
+                    <!-- Mindset Card -->
+                    <div class="bento-card about-mindset-card">
+                        <h3 class="about-card-title">Mindset</h3>
+                        <div class="accent-line"></div>
+                        <p class="mt-4">Computer Science student focused on building practical, real-world applications. I enjoy turning ideas into functional systems, from student management tools to finance and cybersecurity projects. I’m constantly improving my skills in software development, problem-solving, and working with modern tools to create efficient solutions.</p>
+                    </div>
+
+                    <!-- Photo Card -->
+                    <div class="bento-card about-photo-card">
+                        <img src="Images/pic2.jpg" alt="Melusi Shanzi portrait" class="about-photo" loading="lazy">
+                    </div>
+
+                    <!-- Skills Card -->
+                    <div class="bento-card about-craft-card">
+                        <h3 class="about-card-title">Skills</h3>
+                        <div class="accent-line"></div>
+
+                        <div class="skills-groups mt-6">
+                            <div class="skills-group">
+                                <h4 class="text-xs uppercase text-muted mb-2">Languages</h4>
+                                <div class="stack-tags tiny">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">C#</span>
+                                    <span class="tag">JavaScript</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skills-group mt-4">
+                                <h4 class="text-xs uppercase text-muted mb-2">Frontend</h4>
+                                <div class="stack-tags tiny">
+                                    <span class="tag">React</span>
+                                    <span class="tag">Next.js</span>
+                                </div>
+                            </div>
+
+                            <div class="skills-group mt-4">
+                                <h4 class="text-xs uppercase text-muted mb-2">Backend / BaaS</h4>
+                                <div class="stack-tags tiny">
+                                    <span class="tag">Supabase</span>
+                                    <span class="tag">Firebase</span>
+                                </div>
+                            </div>
+
+                            <div class="skills-group mt-4">
+                                <h4 class="text-xs uppercase text-muted mb-2">Databases</h4>
+                                <div class="stack-tags tiny">
+                                    <span class="tag">SQLite</span>
+                                    <span class="tag">PostgreSQL <span style="opacity:0.6; font-size:0.8em; margin-left:2px;">(learning)</span></span>
+                                </div>
+                            </div>
+
+                            <div class="skills-group mt-4">
+                                <h4 class="text-xs uppercase text-muted mb-2">Tools</h4>
+                                <div class="stack-tags tiny">
+                                    <span class="tag">Git</span>
+                                    <span class="tag">VS Code</span>
+                                    <span class="tag">Postman</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certs Card -->
+                    <div class="bento-card about-certs-card">
+                        <h4 class="about-card-sub">Certified In</h4>
+                        <div class="cert-row mt-4">
+                            <i class="fa-solid fa-shield-halved text-emerald"></i>
+                            <span class="text-sm">Cisco Cybersecurity</span>
+                        </div>
+                        <div class="cert-row">
+                            <i class="fa-solid fa-code text-emerald"></i>
+                            <span class="text-sm">HTML & CSS Architecture</span>
+                        </div>
+                        <div class="cert-row">
+                            <i class="fa-solid fa-server text-emerald"></i>
+                            <span class="text-sm">Operating Systems</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section V2 -->
+        <section class="projects-v2" id="projects" aria-label="Featured Projects">
+            <div class="container">
+                <div class="projects-header">
+                    <h2 class="hero-title large no-margin">Featured <span class="text-emerald">Projects</span></h2>
+                    <p class="projects-subtitle">A curated selection of projects that made me confident in building
+                        software.</p>
+                </div>
+
+                <div class="projects-grid-v2">
+                    <!-- 01 — Muzinda App -->
+                    <div class="project-card-v2">
+                        <div class="project-meta">
+                            <span>01 —</span>
+                            <div class="line"></div>
+                            <span>MOBILE APP</span>
+                        </div>
+                        <h2 class="project-title-v2">Muzinda App</h2>
+                        <div class="project-display-card theme-emerald">
+                            <div class="description">
+                                A centralized platform for student accommodation and transport logistics. Streamlining
+                                essential student services through a unified, high-performance interface.
+                            </div>
+                            <!-- Window Shell -->
+                            <div class="window-shell">
+                                <div class="window-header">
+                                    <div class="dot red"></div>
+                                    <div class="dot yellow"></div>
+                                    <div class="dot green"></div>
+                                </div>
+                                <div class="window-content">
+                                    <img src="Images/muzinda-mock.png"
+                                        alt="Muzinda App Interface - Student housing platform" loading="lazy">
+                                </div>
+                            </div>
+                            <a href="javascript:void(0);" class="project-link-overlay"
+                                aria-label="View Muzinda Project details"></a>
+                        </div>
+                    </div>
+
+                    <!-- 02 — Registration System -->
+                    <div class="project-card-v2">
+                        <div class="project-meta">
+                            <span>02 —</span>
+                            <div class="line"></div>
+                            <span>ENTERPRISE SYSTEM</span>
+                        </div>
+                        <h2 class="project-title-v2">Systems Reg</h2>
+                        <div class="project-display-card theme-indigo">
+                            <div class="description">
+                                A robust enterprise-level application designed to manage complex educational user flows
+                                and multi-state data states with elite security standards.
+                            </div>
+                            <!-- Window Shell -->
+                            <div class="window-shell">
+                                <div class="window-header">
+                                    <div class="dot red"></div>
+                                    <div class="dot yellow"></div>
+                                    <div class="dot green"></div>
+                                </div>
+                                <div class="window-content">
+                                    <img src="Images/registration-mock.png" alt="Student Registration System Interface"
+                                        loading="lazy">
+                                </div>
+                            </div>
+                            <a href="javascript:void(0);" class="project-link-overlay"
+                                aria-label="View Systems Reg Project details"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact" aria-label="Contact">
+            <div class="container">
+                <h2 class="section-header">Get In <span class="text-emerald">Touch</span></h2>
+                <div class="contact-grid">
+                    <!-- Clean Glass Form -->
+                    <div class="bento-card wide contact-form-module">
+                        <div class="card-content">
+                            <form id="cyber-contact" action="https://formsubmit.co/melushanzi32@gmail.com" method="POST"
+                                class="modern-form">
+                                <!-- FormSubmit Configuration -->
+                                <input type="hidden" name="_subject"
+                                    value="New Portfolio Message from Melusi Shanzi Portfolio">
+                                <input type="hidden" name="_template" value="table">
+                                <input type="hidden" name="_captcha" value="false">
+                                <input type="hidden" name="_next" value="#contact">
+
+                                <div class="form-row two-col">
+                                    <div class="form-group">
+                                        <label for="name" class="form-label">Your Name</label>
+                                        <input type="text" id="name" name="name" placeholder="John Doe" required
+                                            aria-required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="form-label">Email Address</label>
+                                        <input type="email" id="email" name="email" placeholder="your@email.com"
+                                            required aria-required="true">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message" class="form-label">Your Message</label>
+                                    <textarea id="message" name="message"
+                                        placeholder="Tell me about your project or idea..." required rows="5"
+                                        aria-required="true"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn-cyber full-width" id="submitBtn">
+                                    <span>Send Message</span>
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                                <div id="form-status" class="form-status mt-4" role="status" aria-live="polite"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">Melusi Shanzi</div>
+                    <p class="text-muted text-sm mt-2">Available for freelance & full-time opportunities.</p>
+                </div>
+                <div class="footer-socials">
+                    <a href="https://github.com/Melusiii" aria-label="GitHub" target="_blank"
+                        rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/melusi-shanzi-1875b3350/" aria-label="LinkedIn" target="_blank"
+                        rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:melushanzi32@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="text-muted text-sm">&copy; 2026 Melusi Shanzi. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>
