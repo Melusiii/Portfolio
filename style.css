@@ -124,6 +124,8 @@ body {
     opacity: 0.4;
     pointer-events: none;
     transition: transform 0.1s ease-out;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 .blob-1 {
@@ -1182,6 +1184,11 @@ footer {
     .menu-toggle:hover {
         border-color: var(--primary);
         color: var(--primary);
+    }
+
+    .glow-blob {
+        filter: blur(80px);
+        opacity: 0.2;
     }
 
     .nav-dock {

@@ -18,6 +18,9 @@ const initMeshMovement = () => {
     const blobs = document.querySelectorAll('.glow-blob');
     if (!blobs.length) return;
 
+    // Disable heavy animation loop on mobile to prevent Safari WebKit crashes
+    if (window.innerWidth <= 768) return;
+
     let mouseX = 0, mouseY = 0;
     let currentX = 0, currentY = 0;
 
