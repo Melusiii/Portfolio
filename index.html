@@ -134,6 +134,35 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Key Metrics Card utilizing script.js stat counter -->
+                        <div class="impact-card wide">
+                            <div class="card-content">
+                                <h4 class="text-xs uppercase letter-spacing-wide text-emerald mb-2">Key Metrics</h4>
+                                <div class="stats-row">
+                                    <div class="stat-item">
+                                        <div class="stat-number-wrapper">
+                                            <span class="stat-value text-mono" data-target="5">0</span>
+                                        </div>
+                                        <p class="stat-label">Projects Built</p>
+                                    </div>
+                                    <div class="stat-item stat-divider">
+                                        <div class="stat-number-wrapper">
+                                            <span class="stat-value text-mono" data-target="100">0</span>
+                                            <span class="stat-suffix">%</span>
+                                        </div>
+                                        <p class="stat-label">Security Focus</p>
+                                    </div>
+                                    <div class="stat-item stat-divider">
+                                        <div class="stat-number-wrapper">
+                                            <span class="stat-value text-mono" data-target="15">0</span>
+                                            <span class="stat-suffix">+</span>
+                                        </div>
+                                        <p class="stat-label">Tools Utilized</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -231,6 +260,29 @@
                         <div class="cert-row">
                             <i class="fa-solid fa-server text-emerald"></i>
                             <span class="text-sm">Operating Systems</span>
+                        </div>
+                    </div>
+
+                    <!-- Terminal Card (Cyber Simulator) -->
+                    <div class="bento-card about-terminal-card">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <span class="term-dot red"></span>
+                                <span class="term-dot yellow"></span>
+                                <span class="term-dot green"></span>
+                            </div>
+                            <div class="terminal-title">guest@melusi-cyber:~</div>
+                        </div>
+                        <div class="terminal-body text-mono">
+                            <div class="terminal-output" id="terminalOutput">
+                                <div class="system-line">Melusi Cyber Terminal v1.0.0</div>
+                                <div class="system-line">Type 'help' to see available commands.</div>
+                                <br>
+                            </div>
+                            <div class="terminal-input-row">
+                                <span class="terminal-prompt">guest@melusi-cyber:~$</span>
+                                <input type="text" id="terminalInput" autocomplete="off" spellcheck="false" aria-label="Terminal command input">
+                            </div>
                         </div>
                     </div>
 
@@ -382,6 +434,19 @@
             </div>
         </div>
     </footer>
+
+    <!-- Project Details Modal -->
+    <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-wrapper">
+            <button class="modal-close" id="modalClose" aria-label="Close details">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-body-content">
+                <!-- Content injected dynamically by JS -->
+            </div>
+        </div>
+    </div>
 
     <!-- JS -->
     <script src="script.js"></script>

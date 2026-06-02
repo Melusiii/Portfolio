@@ -1065,14 +1065,17 @@ footer {
 
 .card-glow {
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, var(--primary-glow), transparent 60%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+    border-radius: 50%;
     opacity: 0;
-    transition: var(--transition-snappy);
     pointer-events: none;
+    transition: opacity 0.3s ease;
+    transform: translate(-50%, -50%);
+    left: var(--mouse-x, 0px);
+    top: var(--mouse-y, 0px);
+    z-index: 0;
 }
 
 .card-content {
@@ -1315,5 +1318,392 @@ footer {
 
     .skill-groups {
         gap: 1rem;
+    }
+}
+
+/* ==========================================================================
+   NEW ENHANCEMENTS: Stats, Terminal, Modals & Custom Scrollbars
+   ========================================================================== */
+
+/* 1. Hero Stat Card styling */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number-wrapper {
+    display: flex;
+    align-items: baseline;
+}
+
+.stat-value {
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--primary);
+    font-family: var(--font-mono);
+}
+
+.stat-suffix {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-left: 0.1rem;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.4rem;
+}
+
+.stat-divider {
+    border-left: 1px solid var(--border-glass);
+    padding-left: 1.5rem;
+}
+
+@media (max-width: 600px) {
+    .stats-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .stat-divider {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--border-glass);
+        padding-top: 0.5rem;
+    }
+}
+
+/* 2. Cyber Terminal Card styling */
+.about-terminal-card {
+    grid-column: 1 / 4;
+    grid-row: 3;
+    background: rgba(5, 5, 7, 0.75);
+    border: 1px solid var(--border-accent);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 380px;
+    font-family: var(--font-mono);
+    position: relative;
+    overflow: hidden;
+}
+
+@media (max-width: 900px) {
+    .about-terminal-card {
+        grid-column: 1 / 3;
+        height: 360px;
+    }
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-glass);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.term-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.term-dot.red { background: #ff5f56; }
+.term-dot.yellow { background: #ffbd2e; }
+.term-dot.green { background: #27c93f; }
+
+.terminal-title {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+}
+
+.terminal-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-size: 0.85rem;
+    position: relative;
+    z-index: 2;
+}
+
+.terminal-output {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 0.75rem;
+    padding-right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.terminal-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 0.5rem;
+}
+
+.terminal-prompt {
+    color: var(--primary);
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+#terminalInput {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    caret-color: var(--primary);
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    width: 100%;
+}
+
+.system-line {
+    color: var(--text-muted);
+}
+
+.cmd-line {
+    color: var(--text-primary);
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+
+.output-line {
+    color: var(--text-secondary);
+    white-space: pre-wrap;
+    word-break: break-all;
+    line-height: 1.5;
+}
+
+.output-line a {
+    color: var(--primary);
+    text-decoration: underline;
+    transition: var(--transition-snappy);
+}
+.output-line a:hover {
+    color: #fff;
+}
+
+.error-line {
+    color: #f87171;
+}
+
+.success-line {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* 3. Project details Modal styling */
+.project-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.project-modal.modal-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.modal-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    max-height: 85vh;
+    background: rgba(10, 10, 12, 0.95);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    overflow-y: auto;
+    padding: 2.5rem;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+    z-index: 10;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-modal.modal-active .modal-wrapper {
+    transform: scale(1) translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-snappy);
+    z-index: 15;
+}
+
+.modal-close:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.25);
+    transform: rotate(90deg);
+}
+
+.modal-details-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.modal-project-title {
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.modal-project-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--primary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.modal-section-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: var(--font-mono);
+    color: var(--primary);
+    border-bottom: 1px solid var(--border-glass);
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.75rem;
+}
+
+.modal-tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.modal-tech-tag {
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    padding: 0.3rem 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-pill);
+    color: var(--text-secondary);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* 4. Scrollbar and scroll optimizations */
+/* Custom Global Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    border: 2px solid var(--bg-black);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* Custom Scrollbar for Terminal Output */
+.terminal-output::-webkit-scrollbar {
+    width: 6px;
+}
+.terminal-output::-webkit-scrollbar-track {
+    background: transparent;
+}
+.terminal-output::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+.terminal-output::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* Custom Scrollbar for Modal Wrapper */
+.modal-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+.modal-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+.modal-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+@media (max-width: 600px) {
+    .modal-wrapper {
+        padding: 1.5rem;
+        padding-top: 3.5rem;
+    }
+    .modal-project-title {
+        font-size: 1.75rem;
     }
 }
