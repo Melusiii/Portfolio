@@ -323,7 +323,7 @@ const projectData = {
     ],
     techStack: ['HTML5', 'CSS3', 'JavaScript', 'Netlify Forms'],
     github: 'https://github.com/Melusiii',
-    live: null,
+    live: 'https://workplacementsolutions.co.zw/',
   },
   bridgeway: {
     tag: 'Educational Platform',
@@ -484,6 +484,10 @@ const initContactForm = () => {
 const initParticles = () => {
   const canvas = document.getElementById('particleCanvas');
   if (!canvas) return;
+
+  // Optimize mobile speed by disabling CPU-heavy canvas particles on mobile viewports/touch devices
+  const isMobile = window.innerWidth < 768 || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  if (isMobile) return;
 
   const ctx = canvas.getContext('2d');
   const DOT_COUNT   = 90;

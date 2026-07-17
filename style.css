@@ -763,7 +763,7 @@ section {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(145deg, rgba(4, 31, 22, 0.6) 0%, rgba(7, 26, 18, 0.8) 60%, #030303 100%), url('Images/muzinda-mock.png') no-repeat center top;
+  background: linear-gradient(145deg, rgba(4, 31, 22, 0.6) 0%, rgba(7, 26, 18, 0.8) 60%, #030303 100%), url('Images/muzinda-mock.webp') no-repeat center top;
   background-size: cover;
   opacity: 0.5;
   transition: opacity 0.4s var(--ease-out), transform 0.6s var(--ease-out);
@@ -783,7 +783,7 @@ section {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(145deg, rgba(17, 12, 46, 0.6) 0%, rgba(13, 9, 36, 0.8) 60%, #030303 100%), url('Images/wps-mock.png') no-repeat center top;
+  background: linear-gradient(145deg, rgba(17, 12, 46, 0.6) 0%, rgba(13, 9, 36, 0.8) 60%, #030303 100%), url('Images/wps-mock.webp') no-repeat center top;
   background-size: cover;
   opacity: 0.5;
   transition: opacity 0.4s var(--ease-out), transform 0.6s var(--ease-out);
@@ -839,7 +839,8 @@ section {
   font-weight: 700;
 }
 
-.project-modal-btn {
+.project-modal-btn,
+.project-link-btn {
   width: 36px; height: 36px;
   border-radius: 50%;
   border: 1px solid var(--border);
@@ -849,16 +850,19 @@ section {
   font-size: 0.8rem;
   transition: var(--transition-fast);
 }
-.project-modal-btn i {
+.project-modal-btn i,
+.project-link-btn i {
   transform: rotate(-45deg);
   transition: transform 0.25s var(--ease-out);
 }
-.project-modal-btn:hover {
+.project-modal-btn:hover,
+.project-link-btn:hover {
   border-color: var(--emerald);
   color: var(--emerald);
   background: var(--emerald-dim);
 }
-.project-modal-btn:hover i {
+.project-modal-btn:hover i,
+.project-link-btn:hover i {
   transform: rotate(-45deg) translate(2px, -2px);
 }
 
