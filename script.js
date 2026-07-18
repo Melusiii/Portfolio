@@ -398,9 +398,26 @@ const initProjectModals = () => {
 
   // Bind trigger buttons
   document.querySelectorAll('.project-modal-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const projectId = btn.getAttribute('data-project');
       openModal(projectId);
+    });
+  });
+
+  // Bind whole project card click to trigger its primary action (modal or link)
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a') || e.target.closest('button')) {
+        return;
+      }
+      const modalBtn = card.querySelector('.project-modal-btn');
+      const linkBtn = card.querySelector('.project-link-btn');
+      if (modalBtn) {
+        modalBtn.click();
+      } else if (linkBtn) {
+        linkBtn.click();
+      }
     });
   });
 

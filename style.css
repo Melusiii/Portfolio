@@ -709,7 +709,7 @@ section {
   border-radius: var(--radius-xl);
   overflow: hidden;
   transition: var(--transition);
-  cursor: default;
+  cursor: pointer;
 }
 .project-card:hover {
   border-color: var(--border-hover);
