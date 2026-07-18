@@ -203,6 +203,10 @@ const initCursorGlow = () => {
   const glow = document.getElementById('cursorGlow');
   if (!glow) return;
 
+  // Optimize mobile speed by disabling cursor glow animation loop on mobile viewports/touch devices
+  const isMobile = window.innerWidth < 768 || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  if (isMobile) return;
+
   let mouseX = 0, mouseY = 0;
   let glowX = 0, glowY = 0;
   let rafId;

@@ -755,6 +755,23 @@ section {
 
 .project-card:hover .preview-glow { opacity: 0.6; }
 
+.preview-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0.5;
+  transition: opacity 0.4s var(--ease-out), transform 0.6s var(--ease-out);
+  z-index: 1;
+}
+.project-card:hover .preview-img {
+  opacity: 0.8;
+  transform: scale(1.04);
+}
+.preview-emerald .preview-glow { background: radial-gradient(circle, var(--emerald), transparent 65%); }
+
 .preview-emerald {
   background: #030303;
   border-bottom: 1px solid rgba(16,185,129,0.12);
@@ -763,17 +780,9 @@ section {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(145deg, rgba(4, 31, 22, 0.6) 0%, rgba(7, 26, 18, 0.8) 60%, #030303 100%), url('Images/muzinda-mock.webp') no-repeat center top;
-  background-size: cover;
-  opacity: 0.5;
-  transition: opacity 0.4s var(--ease-out), transform 0.6s var(--ease-out);
-  z-index: 1;
+  background: linear-gradient(145deg, rgba(4, 31, 22, 0.6) 0%, rgba(7, 26, 18, 0.8) 60%, #030303 100%);
+  z-index: 2;
 }
-.project-card:hover .preview-emerald::after {
-  opacity: 0.8;
-  transform: scale(1.04);
-}
-.preview-emerald .preview-glow { background: radial-gradient(circle, var(--emerald), transparent 65%); }
 
 .preview-violet {
   background: #030303;
@@ -783,15 +792,8 @@ section {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(145deg, rgba(17, 12, 46, 0.6) 0%, rgba(13, 9, 36, 0.8) 60%, #030303 100%), url('Images/wps-mock.webp') no-repeat center top;
-  background-size: cover;
-  opacity: 0.5;
-  transition: opacity 0.4s var(--ease-out), transform 0.6s var(--ease-out);
-  z-index: 1;
-}
-.project-card:hover .preview-violet::after {
-  opacity: 0.8;
-  transform: scale(1.04);
+  background: linear-gradient(145deg, rgba(17, 12, 46, 0.6) 0%, rgba(13, 9, 36, 0.8) 60%, #030303 100%);
+  z-index: 2;
 }
 .preview-violet .preview-glow { background: radial-gradient(circle, var(--violet), transparent 65%); }
 
@@ -800,7 +802,7 @@ section {
 
 .preview-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 .preview-label {
   display: block;
