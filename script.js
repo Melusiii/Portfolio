@@ -45,10 +45,12 @@ const initScrollReveal = () => {
    ============================================= */
 const initHeader = () => {
   const header = document.getElementById('header');
-  if (!header) return;
+  const bottomNav = document.getElementById('mobileBottomNav');
 
   const onScroll = () => {
-    header.classList.toggle('scrolled', window.scrollY > 20);
+    const isScrolled = window.scrollY > 30;
+    if (header) header.classList.toggle('scrolled', isScrolled);
+    if (bottomNav) bottomNav.classList.toggle('scrolled', isScrolled);
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -569,13 +571,11 @@ const initParticles = () => {
   const canvas = document.getElementById('particleCanvas');
   if (!canvas) return;
 
-  const isMobile = window.innerWidth < 768 || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-  if (isMobile) return;
-
+  const isMobile = window.innerWidth < 768;
   const ctx = canvas.getContext('2d');
-  const PARTICLE_COUNT = 65;
-  const CONNECT_DIST   = 110;
-  const REPEL_DIST     = 120;
+  const PARTICLE_COUNT = isMobile ? 28 : 65;
+  const CONNECT_DIST   = isMobile ? 90 : 110;
+  const REPEL_DIST     = isMobile ? 95 : 120;
   const REPEL_FORCE    = 2.2;
 
   let W, H, particles;
@@ -588,14 +588,25 @@ const initParticles = () => {
   window.addEventListener('resize', resize);
   resize();
 
-  window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  });
-  window.addEventListener('mouseleave', () => {
-    mouse.x = -9999;
-    mouse.y = -9999;
-  });
+  // Mouse & Touch tracking
+  const updatePointer = (x, y) => {
+    mouse.x = x;
+    mouse.y = y;
+  };
+
+  window.addEventListener('mousemove', (e) => updatePointer(e.clientX, e.clientY));
+  window.addEventListener('mouseleave', () => updatePointer(-9999, -9999));
+
+  // Touch support for mobile
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches[0]) updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
+
+  window.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches[0]) updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
+
+  window.addEventListener('touchend', () => updatePointer(-9999, -9999));
 
   const rand = (min, max) => Math.random() * (max - min) + min;
 
