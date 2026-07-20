@@ -122,7 +122,7 @@ const initSmoothScroll = () => {
    ============================================= */
 const initActiveNav = () => {
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const navLinks = document.querySelectorAll('.nav-link, .bottom-nav-link');
   if (!sections.length || !navLinks.length) return;
 
   const observer = new IntersectionObserver((entries) => {
@@ -197,42 +197,101 @@ const initServiceCardTilt = () => {
 };
 
 /* =============================================
-   CURSOR GLOW FOLLOWER
+   CUSTOM CURSOR
    ============================================= */
 const initCursorGlow = () => {
-  const glow = document.getElementById('cursorGlow');
-  if (!glow) return;
-
-  // Optimize mobile speed by disabling cursor glow animation loop on mobile viewports/touch devices
+  // Disable on touch/mobile
   const isMobile = window.innerWidth < 768 || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
   if (isMobile) return;
 
+  const dot   = document.getElementById('cursorDot');
+  const ring  = document.getElementById('cursorRing');
+  const trail = document.getElementById('cursorTrail');
+  const glow  = document.getElementById('cursorGlow');
+
+  if (!dot || !ring) return;
+
   let mouseX = 0, mouseY = 0;
-  let glowX = 0, glowY = 0;
-  let rafId;
+  let ringX  = 0, ringY  = 0;
+  let trailX = 0, trailY = 0;
+  let glowX  = 0, glowY  = 0;
 
   const lerp = (a, b, t) => a + (b - a) * t;
 
   const animate = () => {
-    glowX = lerp(glowX, mouseX, 0.1);
-    glowY = lerp(glowY, mouseY, 0.1);
-    glow.style.left = glowX + 'px';
-    glow.style.top  = glowY + 'px';
-    rafId = requestAnimationFrame(animate);
+    // Dot follows instantly
+    dot.style.left = mouseX + 'px';
+    dot.style.top  = mouseY + 'px';
+
+    // Ring follows with slight lag
+    ringX = lerp(ringX, mouseX, 0.14);
+    ringY = lerp(ringY, mouseY, 0.14);
+    ring.style.left = ringX + 'px';
+    ring.style.top  = ringY + 'px';
+
+    // Trail follows very lazily
+    trailX = lerp(trailX, mouseX, 0.06);
+    trailY = lerp(trailY, mouseY, 0.06);
+    if (trail) {
+      trail.style.left = trailX + 'px';
+      trail.style.top  = trailY + 'px';
+    }
+
+    // Legacy glow — laziest
+    glowX = lerp(glowX, mouseX, 0.07);
+    glowY = lerp(glowY, mouseY, 0.07);
+    if (glow) {
+      glow.style.left = glowX + 'px';
+      glow.style.top  = glowY + 'px';
+    }
+
+    requestAnimationFrame(animate);
   };
 
   window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    glow.classList.add('active');
+    dot.classList.add('visible');
+    ring.classList.add('visible');
+    if (trail) trail.classList.add('visible');
+    if (glow)  glow.classList.add('active');
   });
 
   window.addEventListener('mouseleave', () => {
-    glow.classList.remove('active');
+    dot.classList.remove('visible');
+    ring.classList.remove('visible');
+    if (trail) trail.classList.remove('visible');
+    if (glow)  glow.classList.remove('active');
+  });
+
+  // Hover effect on interactive elements
+  const interactiveEls = document.querySelectorAll(
+    'a, button, [role="button"], input, textarea, select, label, .btn, .project-card, .service-card, .social-link, .nav-link, .logo'
+  );
+  interactiveEls.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      dot.classList.add('hovering');
+      ring.classList.add('hovering');
+    });
+    el.addEventListener('mouseleave', () => {
+      dot.classList.remove('hovering');
+      ring.classList.remove('hovering');
+    });
+  });
+
+  // Click burst effect
+  window.addEventListener('mousedown', () => {
+    dot.classList.add('clicking');
+    ring.classList.add('clicking');
+  });
+  window.addEventListener('mouseup', () => {
+    dot.classList.remove('clicking');
+    ring.classList.remove('clicking');
   });
 
   animate();
 };
+
 
 /* =============================================
    SCROLL PROGRESS BAR
@@ -502,25 +561,26 @@ const initContactForm = () => {
    - Dots repel away from mouse position
    - Lines drawn between nearby dots
    ============================================= */
+/* =============================================
+   UNIFIED CYBER-SAKURA & SPIRIT PARTICLES 🌸
+   Hell's Paradise × MTS Brand Palette
+   ============================================= */
 const initParticles = () => {
   const canvas = document.getElementById('particleCanvas');
   if (!canvas) return;
 
-  // Optimize mobile speed by disabling CPU-heavy canvas particles on mobile viewports/touch devices
   const isMobile = window.innerWidth < 768 || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
   if (isMobile) return;
 
   const ctx = canvas.getContext('2d');
-  const DOT_COUNT   = 90;
-  const CONNECT_DIST = 130;
-  const REPEL_DIST   = 110;
-  const REPEL_FORCE  = 2.8;
-  const BASE_SPEED   = 0.35;
+  const PARTICLE_COUNT = 65;
+  const CONNECT_DIST   = 110;
+  const REPEL_DIST     = 120;
+  const REPEL_FORCE    = 2.2;
 
   let W, H, particles;
   let mouse = { x: -9999, y: -9999 };
 
-  // Resize handler
   const resize = () => {
     W = canvas.width  = window.innerWidth;
     H = canvas.height = window.innerHeight;
@@ -528,7 +588,6 @@ const initParticles = () => {
   window.addEventListener('resize', resize);
   resize();
 
-  // Mouse tracking
   window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
@@ -538,65 +597,109 @@ const initParticles = () => {
     mouse.y = -9999;
   });
 
-  // Particle factory
-  const createParticle = () => ({
-    x:  Math.random() * W,
-    y:  Math.random() * H,
-    vx: (Math.random() - 0.5) * BASE_SPEED,
-    vy: (Math.random() - 0.5) * BASE_SPEED,
-    r:  Math.random() * 1.8 + 0.8,
-    // vary between emerald, violet, and white-ish
-    hue: Math.random() < 0.55 ? 162 : Math.random() < 0.6 ? 265 : 200,
-  });
+  const rand = (min, max) => Math.random() * (max - min) + min;
 
-  particles = Array.from({ length: DOT_COUNT }, createParticle);
+  // Particle types: 'petal' (sakura) or 'ember' (glowing spirit orb)
+  class CyberParticle {
+    constructor(initial = false) {
+      this.reset(initial);
+    }
 
-  // Animation loop
-  const draw = () => {
-    ctx.clearRect(0, 0, W, H);
+    reset(initial = false) {
+      this.x     = rand(0, W);
+      this.y     = initial ? rand(0, H) : rand(-60, -10);
+      this.isPetal = Math.random() < 0.65; // 65% petals, 35% spirit embers
+      this.r     = this.isPetal ? rand(3.5, 6.5) : rand(1.2, 2.5);
+      this.vx    = rand(-0.4, 0.4);
+      this.vy    = rand(0.35, 0.95);     // downward wind flow
+      this.rot   = rand(0, Math.PI * 2);
+      this.vrot  = rand(-0.02, 0.02);
+      this.alpha = rand(0.3, 0.75);
+      this.sway  = rand(0.008, 0.02);
+      this.phase = rand(0, Math.PI * 2);
 
-    // Update + draw particles
-    particles.forEach(p => {
+      // Color palette: 40% Sakura Pink (335°), 30% Emerald (160°), 20% Teal (195°), 10% Violet (270°)
+      const randColor = Math.random();
+      if (randColor < 0.40)      this.hue = rand(330, 355); // Sakura Pink
+      else if (randColor < 0.70) this.hue = rand(155, 170); // Emerald
+      else if (randColor < 0.90) this.hue = rand(190, 205); // Teal
+      else                       this.hue = rand(265, 280); // Violet
+    }
+
+    update() {
+      // Wind sway
+      this.phase += this.sway;
+      this.x += this.vx + Math.sin(this.phase) * 0.45;
+      this.y += this.vy;
+      this.rot += this.vrot;
+
       // Mouse repulsion
-      const dx = p.x - mouse.x;
-      const dy = p.y - mouse.y;
+      const dx = this.x - mouse.x;
+      const dy = this.y - mouse.y;
       const dist = Math.hypot(dx, dy);
 
       if (dist < REPEL_DIST && dist > 0) {
         const force = (REPEL_DIST - dist) / REPEL_DIST;
-        p.vx += (dx / dist) * force * REPEL_FORCE * 0.06;
-        p.vy += (dy / dist) * force * REPEL_FORCE * 0.06;
+        this.x += (dx / dist) * force * REPEL_FORCE;
+        this.y += (dy / dist) * force * REPEL_FORCE;
       }
 
-      // Friction / damping
-      p.vx *= 0.97;
-      p.vy *= 0.97;
+      // Recycle when drifting off screen bottom or sides
+      if (this.y > H + 20 || this.x < -40 || this.x > W + 40) {
+        this.reset(false);
+      }
+    }
 
-      // Enforce min speed so they keep drifting
-      const speed = Math.hypot(p.vx, p.vy);
-      if (speed < BASE_SPEED * 0.4) {
-        p.vx += (Math.random() - 0.5) * 0.04;
-        p.vy += (Math.random() - 0.5) * 0.04;
+    draw(ctx) {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rot);
+      ctx.globalAlpha = this.alpha;
+
+      if (this.isPetal) {
+        // Draw delicate sakura petal
+        ctx.fillStyle = `hsla(${this.hue}, 75%, 75%, 0.85)`;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, this.r, this.r * 1.75, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Inner glowing core line
+        ctx.strokeStyle = `hsla(${this.hue}, 90%, 90%, 0.5)`;
+        ctx.lineWidth = 0.6;
+        ctx.beginPath();
+        ctx.moveTo(0, -this.r * 1.2);
+        ctx.lineTo(0, this.r * 1.2);
+        ctx.stroke();
+      } else {
+        // Draw spirit ember orb with glow
+        ctx.fillStyle = `hsla(${this.hue}, 85%, 70%, 0.9)`;
+        ctx.beginPath();
+        ctx.arc(0, 0, this.r, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Outer aura
+        ctx.fillStyle = `hsla(${this.hue}, 80%, 65%, 0.25)`;
+        ctx.beginPath();
+        ctx.arc(0, 0, this.r * 2.5, 0, Math.PI * 2);
+        ctx.fill();
       }
 
-      // Move
-      p.x += p.vx;
-      p.y += p.vy;
+      ctx.restore();
+    }
+  }
 
-      // Wrap edges
-      if (p.x < -20) p.x = W + 20;
-      if (p.x > W + 20) p.x = -20;
-      if (p.y < -20) p.y = H + 20;
-      if (p.y > H + 20) p.y = -20;
+  particles = Array.from({ length: PARTICLE_COUNT }, () => new CyberParticle(true));
 
-      // Draw dot
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `hsla(${p.hue}, 70%, 65%, 0.75)`;
-      ctx.fill();
+  const draw = () => {
+    ctx.clearRect(0, 0, W, H);
+
+    // Update & draw particles
+    particles.forEach(p => {
+      p.update();
+      p.draw(ctx);
     });
 
-    // Draw connection lines
+    // Draw delicate glowing spirit connection lines between nearby particles
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const a = particles[i];
@@ -606,27 +709,27 @@ const initParticles = () => {
         const d  = Math.hypot(dx, dy);
 
         if (d < CONNECT_DIST) {
-          const alpha = (1 - d / CONNECT_DIST) * 0.22;
+          const alpha = (1 - d / CONNECT_DIST) * 0.18;
           const hue   = (a.hue + b.hue) / 2;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = `hsla(${hue}, 60%, 60%, ${alpha})`;
-          ctx.lineWidth = 0.8;
+          ctx.strokeStyle = `hsla(${hue}, 70%, 75%, ${alpha})`;
+          ctx.lineWidth = 0.75;
           ctx.stroke();
         }
       }
     }
 
-    // Draw mouse glow ring
+    // Interactive mouse aura ring (Sakura & Emerald blend)
     if (mouse.x !== -9999) {
       const gradient = ctx.createRadialGradient(
         mouse.x, mouse.y, 0,
         mouse.x, mouse.y, REPEL_DIST
       );
-      gradient.addColorStop(0,   'rgba(16, 185, 129, 0.06)');
-      gradient.addColorStop(0.5, 'rgba(16, 185, 129, 0.02)');
-      gradient.addColorStop(1,   'rgba(16, 185, 129, 0)');
+      gradient.addColorStop(0,   'rgba(249, 168, 212, 0.08)'); // Sakura pink
+      gradient.addColorStop(0.5, 'rgba(16, 217, 138, 0.03)');  // Emerald
+      gradient.addColorStop(1,   'rgba(0, 0, 0, 0)');
       ctx.beginPath();
       ctx.arc(mouse.x, mouse.y, REPEL_DIST, 0, Math.PI * 2);
       ctx.fillStyle = gradient;
@@ -638,3 +741,6 @@ const initParticles = () => {
 
   draw();
 };
+
+
+

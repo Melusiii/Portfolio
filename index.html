@@ -3,26 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MTS — Melusi Trust Shanzi. Full-stack web developer building fast, responsive websites and custom software systems. Available for freelance projects.">
+  <meta name="description" content="MTS — Melusi Trust Shanzi. Full-stack software engineer building fast web applications, custom databases, secure APIs, and IT infrastructure.">
   <meta name="theme-color" content="#050507">
-  <meta property="og:title" content="MTS | Web Developer">
-  <meta property="og:description" content="Full-stack web developer building fast, responsive websites and custom software systems.">
+  <meta property="og:title" content="MTS | Software Engineer & Tech Solutions">
+  <meta property="og:description" content="Full-stack software engineer building fast web applications, custom databases, secure APIs, and IT infrastructure.">
   <meta property="og:type" content="website">
-  <title>MTS | Melusi Trust Shanzi — Web Developer</title>
+  <title>MTS | Melusi Trust Shanzi — Software Engineer</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+  <link rel="icon" type="image/png" href="Images/logo.png">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
 
-  <!-- Cursor glow -->
-  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"    id="cursorDot"   aria-hidden="true"></div>
+  <div class="cursor-ring"   id="cursorRing"  aria-hidden="true"></div>
+  <div class="cursor-trail"  id="cursorTrail" aria-hidden="true"></div>
+  <!-- Legacy cursor glow (keep for compat) -->
+  <div class="cursor-glow"   id="cursorGlow"  aria-hidden="true"></div>
+
 
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress" id="scrollProgress" role="progressbar" aria-hidden="true"></div>
@@ -39,7 +45,10 @@
   <!-- Header -->
   <header class="header" id="header">
     <div class="header-inner">
-      <a href="#home" class="logo">MTS<span class="logo-dot">.</span></a>
+      <a href="#home" class="logo">
+        <img src="Images/logo.png" alt="MTS Logo" class="logo-img">
+        <span>MTS<span class="logo-dot">.</span></span>
+      </a>
       <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
         <a href="#home" class="nav-link active">Home</a>
         <a href="#services" class="nav-link">Services</a>
@@ -78,13 +87,25 @@
             Available for freelance projects
           </div>
 
-          <h1 class="hero-title reveal-left delay-1">
-            Hey, I'm <span class="text-emerald">Melusi</span>.<br>
-            I build things<br>for the web.
+          <h1 class="hero-title" aria-label="Hey, I'm Melusi. I'm a developer.">
+            <!-- Line 1: "Hey, I'm" -->
+            <span class="ht-mask">
+              <span class="ht-line ht-l1">Hey, I'm</span>
+            </span>
+            <!-- Line 2: "Melusi." -->
+            <span class="ht-mask">
+              <span class="ht-line ht-l2">
+                <span class="ht-name">Melusi</span><span class="ht-punct">.</span>
+              </span>
+            </span>
+            <!-- Line 3: "I'm a developer." -->
+            <span class="ht-mask">
+              <span class="ht-line ht-l3">I'm a developer.</span>
+            </span>
           </h1>
 
           <p class="hero-sub reveal-left delay-2">
-            Full-stack developer creating fast, responsive websites and custom software. Computer Science student with a passion for clean code, secure systems, and great user experiences.
+            Full-stack software engineer &amp; CS student crafting fast web applications, custom databases, secure backend APIs, and network systems.
           </p>
 
           <div class="hero-cta reveal-left delay-3">
@@ -133,31 +154,31 @@
     <!-- ===== INFINITE TECH MARQUEE STRIP ===== -->
     <div class="tech-strip" aria-hidden="true">
       <div class="tech-strip-track">
-        <span>React</span>
-        <span>Next.js</span>
-        <span>ASP.NET Core</span>
-        <span>Node.js</span>
-        <span>TypeScript</span>
-        <span>Python</span>
-        <span>PostgreSQL</span>
-        <span>SQL Server</span>
-        <span>Cisco Routing</span>
-        <span>Cybersecurity</span>
-        <span>Git & GitHub</span>
-        <span>Tailwind CSS</span>
+        <span class="tech-item tech-react"><i class="fa-brands fa-react"></i> React</span>
+        <span class="tech-item tech-next"><i class="fa-solid fa-bolt"></i> Next.js</span>
+        <span class="tech-item tech-dotnet"><i class="fa-solid fa-cube"></i> ASP.NET Core</span>
+        <span class="tech-item tech-node"><i class="fa-brands fa-node-js"></i> Node.js</span>
+        <span class="tech-item tech-ts"><i class="fa-solid fa-code"></i> TypeScript</span>
+        <span class="tech-item tech-python"><i class="fa-brands fa-python"></i> Python</span>
+        <span class="tech-item tech-postgres"><i class="fa-solid fa-server"></i> PostgreSQL</span>
+        <span class="tech-item tech-sqlserver"><i class="fa-solid fa-database"></i> SQL Server</span>
+        <span class="tech-item tech-cisco"><i class="fa-solid fa-network-wired"></i> Cisco Routing</span>
+        <span class="tech-item tech-cyber"><i class="fa-solid fa-shield-halved"></i> Cybersecurity</span>
+        <span class="tech-item tech-git"><i class="fa-brands fa-github"></i> Git &amp; GitHub</span>
+        <span class="tech-item tech-tailwind"><i class="fa-solid fa-wand-magic-sparkles"></i> Tailwind CSS</span>
         <!-- Duplicate for infinite seamless scroll -->
-        <span>React</span>
-        <span>Next.js</span>
-        <span>ASP.NET Core</span>
-        <span>Node.js</span>
-        <span>TypeScript</span>
-        <span>Python</span>
-        <span>PostgreSQL</span>
-        <span>SQL Server</span>
-        <span>Cisco Routing</span>
-        <span>Cybersecurity</span>
-        <span>Git & GitHub</span>
-        <span>Tailwind CSS</span>
+        <span class="tech-item tech-react"><i class="fa-brands fa-react"></i> React</span>
+        <span class="tech-item tech-next"><i class="fa-solid fa-bolt"></i> Next.js</span>
+        <span class="tech-item tech-dotnet"><i class="fa-solid fa-cube"></i> ASP.NET Core</span>
+        <span class="tech-item tech-node"><i class="fa-brands fa-node-js"></i> Node.js</span>
+        <span class="tech-item tech-ts"><i class="fa-solid fa-code"></i> TypeScript</span>
+        <span class="tech-item tech-python"><i class="fa-brands fa-python"></i> Python</span>
+        <span class="tech-item tech-postgres"><i class="fa-solid fa-server"></i> PostgreSQL</span>
+        <span class="tech-item tech-sqlserver"><i class="fa-solid fa-database"></i> SQL Server</span>
+        <span class="tech-item tech-cisco"><i class="fa-solid fa-network-wired"></i> Cisco Routing</span>
+        <span class="tech-item tech-cyber"><i class="fa-solid fa-shield-halved"></i> Cybersecurity</span>
+        <span class="tech-item tech-git"><i class="fa-brands fa-github"></i> Git &amp; GitHub</span>
+        <span class="tech-item tech-tailwind"><i class="fa-solid fa-wand-magic-sparkles"></i> Tailwind CSS</span>
       </div>
     </div>
 
@@ -168,9 +189,8 @@
           <span class="eyebrow">01 — What I Do</span>
           <h2 class="section-title">Services I offer<br>to my clients.</h2>
         </div>
-
         <div class="services-grid">
-          <div class="service-card reveal-scale">
+          <div class="service-card reveal-scale" data-jersey="01">
             <div class="service-top">
               <div class="service-icon-wrap icon-emerald">
                 <i class="fa-solid fa-laptop-code"></i>
@@ -189,7 +209,7 @@
             </ul>
           </div>
 
-          <div class="service-card reveal-scale delay-1">
+          <div class="service-card reveal-scale delay-1" data-jersey="02">
             <div class="service-top">
               <div class="service-icon-wrap icon-violet">
                 <i class="fa-solid fa-server"></i>
@@ -208,7 +228,7 @@
             </ul>
           </div>
 
-          <div class="service-card reveal-scale delay-2">
+          <div class="service-card reveal-scale delay-2" data-jersey="03">
             <div class="service-top">
               <div class="service-icon-wrap icon-fuchsia">
                 <i class="fa-solid fa-shield-halved"></i>
@@ -226,6 +246,59 @@
               <li>Cisco Packet Tracer setups</li>
             </ul>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🏀 Court arc divider -->
+    <div class="court-divider" aria-hidden="true">
+      <svg viewBox="0 0 320 60" xmlns="http://www.w3.org/2000/svg">
+        <!-- half-court arc -->
+        <path d="M 0 60 Q 160 -20 320 60"/>
+        <!-- centre circle -->
+        <circle cx="160" cy="60" r="18" stroke-dasharray="4 4"/>
+        <!-- free-throw line dots -->
+        <circle cx="160" cy="60" r="2" fill="currentColor" style="fill:var(--hoop)"/>
+      </svg>
+    </div>
+
+    <!-- ===== WHY WORK WITH ME (VALUE GRID) ===== -->
+    <section class="value-strip" aria-label="Why Work With Me">
+      <div class="container">
+        <div class="value-grid">
+
+          <div class="value-card reveal-scale">
+            <div class="value-icon icon-emerald">
+              <i class="fa-solid fa-bolt-lightning"></i>
+            </div>
+            <h3 class="value-title">Ultra-Fast Performance</h3>
+            <p class="value-desc">Lightweight, optimised code engineered for lightning-fast page loads and smooth user interaction.</p>
+          </div>
+
+          <div class="value-card reveal-scale delay-1">
+            <div class="value-icon icon-violet">
+              <i class="fa-solid fa-shield-cat"></i>
+            </div>
+            <h3 class="value-title">Security-First Mindset</h3>
+            <p class="value-desc">Deep CS grounding in network security, input sanitization, authentication, and robust data protection.</p>
+          </div>
+
+          <div class="value-card reveal-scale delay-2">
+            <div class="value-icon icon-teal">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+            <h3 class="value-title">100% Responsive & SEO</h3>
+            <p class="value-desc">Flawless experience on every device size, paired with semantic structure built for search ranking.</p>
+          </div>
+
+          <div class="value-card reveal-scale delay-3">
+            <div class="value-icon icon-hoop">
+              <i class="fa-solid fa-comments"></i>
+            </div>
+            <h3 class="value-title">Clear & Fast Comms</h3>
+            <p class="value-desc">Direct communication, clear milestone updates, and rapid responses to keep your project on track.</p>
+          </div>
+
         </div>
       </div>
     </section>
@@ -363,48 +436,50 @@
               I'm Melusi Trust Shanzi — a Computer Science student based in Zimbabwe with a genuine love for building things on the web. Whether it's a sleek landing page for a small business or a custom database-backed platform, I care about writing clean, maintainable code that actually works.
             </p>
             <p>
-              Beyond freelance work, I'm deepening my knowledge in cybersecurity and network engineering — because I believe the best software developers also understand how to keep their systems secure.
+              Like a point guard reading the court, I play both <span class="text-emerald">offense</span> and <span style="color:var(--violet-light)">defense</span> — I build the frontend and lock down the backend. Fast breaks, clean passes, no wasted code.
             </p>
             <p>
-              I'm a strong communicator, fast learner, and I take deadlines seriously. If you have an idea, I'd love to help you build it.
+              Beyond freelance work, I'm deepening my knowledge in cybersecurity and network engineering — because the best devs also understand how to keep their systems secure. I'm a strong communicator, fast learner, and I take deadlines seriously.
             </p>
             <div class="about-cta">
               <a href="#contact" class="btn btn-primary" id="cvBtn2">
-                Get in Touch <i class="fa-solid fa-paper-plane"></i>
+                Let's run a play <i class="fa-solid fa-paper-plane"></i>
               </a>
             </div>
           </div>
 
           <div class="about-skills reveal-right delay-1">
             <div class="skills-block">
-              <h4 class="skills-heading">Languages</h4>
-              <ul class="skills-list">
-                <li>JavaScript / TypeScript</li>
-                <li>Python</li>
-                <li>C#</li>
-                <li>SQL</li>
-                <li>HTML & CSS</li>
-              </ul>
+              <h4 class="skills-heading"><i class="fa-solid fa-code"></i> Languages</h4>
+              <div class="skill-pills">
+                <span class="pill pill-js"><i class="fa-brands fa-js"></i> JavaScript</span>
+                <span class="pill pill-ts"><i class="fa-solid fa-code"></i> TypeScript</span>
+                <span class="pill pill-python"><i class="fa-brands fa-python"></i> Python</span>
+                <span class="pill pill-csharp"><i class="fa-solid fa-hashtag"></i> C#</span>
+                <span class="pill pill-sql"><i class="fa-solid fa-database"></i> SQL</span>
+                <span class="pill pill-html"><i class="fa-brands fa-html5"></i> HTML5 &amp; CSS3</span>
+              </div>
             </div>
+
             <div class="skills-block">
-              <h4 class="skills-heading">Frameworks</h4>
-              <ul class="skills-list">
-                <li>React & Next.js</li>
-                <li>ASP.NET Core</li>
-                <li>Node.js</li>
-                <li>Tailwind CSS</li>
-                <li>Express.js</li>
-              </ul>
+              <h4 class="skills-heading"><i class="fa-solid fa-layer-group"></i> Frameworks &amp; Architecture</h4>
+              <div class="skill-pills">
+                <span class="pill pill-react"><i class="fa-brands fa-react"></i> React &amp; Next.js</span>
+                <span class="pill pill-dotnet"><i class="fa-solid fa-cube"></i> ASP.NET Core</span>
+                <span class="pill pill-node"><i class="fa-brands fa-node-js"></i> Node.js &amp; Express</span>
+                <span class="pill pill-tailwind"><i class="fa-solid fa-wand-magic-sparkles"></i> Tailwind CSS</span>
+              </div>
             </div>
+
             <div class="skills-block">
-              <h4 class="skills-heading">Tools & Platforms</h4>
-              <ul class="skills-list">
-                <li>PostgreSQL & SQL Server</li>
-                <li>Supabase & Vercel</li>
-                <li>Git & GitHub</li>
-                <li>Cisco Packet Tracer</li>
-                <li>Figma</li>
-              </ul>
+              <h4 class="skills-heading"><i class="fa-solid fa-screwdriver-wrench"></i> Systems &amp; Tools</h4>
+              <div class="skill-pills">
+                <span class="pill pill-postgres"><i class="fa-solid fa-server"></i> PostgreSQL &amp; SQL Server</span>
+                <span class="pill pill-supabase"><i class="fa-solid fa-cloud"></i> Supabase &amp; Vercel</span>
+                <span class="pill pill-git"><i class="fa-brands fa-github"></i> Git &amp; GitHub</span>
+                <span class="pill pill-cisco"><i class="fa-solid fa-network-wired"></i> Cisco Networking</span>
+                <span class="pill pill-figma"><i class="fa-brands fa-figma"></i> Figma</span>
+              </div>
             </div>
           </div>
 
@@ -493,8 +568,11 @@
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <span class="logo">MTS<span class="logo-dot">.</span></span>
-        <p>Melusi Trust Shanzi — Web Developer</p>
+        <a href="#home" class="logo">
+          <img src="Images/logo.png" alt="MTS Logo" class="logo-img">
+          <span>MTS<span class="logo-dot">.</span></span>
+        </a>
+        <p>Melusi Trust Shanzi — Software Engineer</p>
       </div>
       <div class="footer-links">
         <a href="https://github.com/Melusiii" target="_blank" rel="noopener noreferrer" id="footerGithub">GitHub</a>
@@ -503,6 +581,7 @@
         <a href="mailto:melushanzi@gmail.com" id="footerEmail">Email</a>
       </div>
       <p class="footer-copy">&copy; 2026 MTS. All rights reserved.</p>
+      <p class="footer-quote">“Even in paradise, the work still has to be done.” — MTS 🌸</p>
     </div>
   </footer>
 
@@ -515,6 +594,32 @@
       <div class="modal-content" id="modalContent"></div>
     </div>
   </div>
+
+  <!-- Floating Mobile Bottom Pill Nav Bar -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Mobile Bottom Navigation">
+    <div class="bottom-nav-inner">
+      <a href="#home" class="bottom-nav-link active" data-section="home" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+      <a href="#services" class="bottom-nav-link" data-section="services" aria-label="Services">
+        <i class="fa-solid fa-bolt"></i>
+        <span>Services</span>
+      </a>
+      <a href="#projects" class="bottom-nav-link" data-section="projects" aria-label="Projects">
+        <i class="fa-solid fa-briefcase"></i>
+        <span>Projects</span>
+      </a>
+      <a href="#about" class="bottom-nav-link" data-section="about" aria-label="About">
+        <i class="fa-solid fa-user"></i>
+        <span>About</span>
+      </a>
+      <a href="#contact" class="bottom-nav-link" data-section="contact" aria-label="Contact">
+        <i class="fa-solid fa-paper-plane"></i>
+        <span>Contact</span>
+      </a>
+    </div>
+  </nav>
 
 </body>
 </html>
